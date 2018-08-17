@@ -10,11 +10,11 @@ module ChinaRegion
     def parent_code
       Match.upper_level(code)
     end
-    # 补全 code
+    # 补全 code 12位
     # example:
-    #  11 => 110000
+    #  1101 => 110100000000
     def full_code
-      code.ljust(6, '0')
+      code.ljust(12, '0')
     end
 
     def ==(other)
