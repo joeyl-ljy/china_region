@@ -37,5 +37,17 @@ module ChinaRegion
     def type_of(code)
       ChinaRegion::Type.by_number_count(code.size)
     end
+
+    def pinyin(str)
+      PinYin.of_string(str)
+    end
+
+    def pinyin_cap(str)
+      pinyin(str).map(&:capitalize).join
+    end
+
+    def pinyin_abbr(str)
+      pinyin(str).map { |x| x[0] }.join
+    end 
   end
 end

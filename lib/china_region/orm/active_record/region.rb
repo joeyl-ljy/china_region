@@ -32,7 +32,7 @@ module ChinaRegion
           require "csv"
           inserts = []
           CSV.foreach(File.join(ChinaRegion.root,"data","db.csv"), headers: true, encoding: "utf-8").with_index do |row, i|
-            inserts.push "('#{Match.short_code(row['code'])}','#{row['name']}')"
+            inserts.push "('#{Match.short_code(row['code'])}','#{row['name']}','#{Match.pinyin_cap(row['name'])}','#{Match.pinyin_abbr(row['name'])}')"
             if (i % batch_size.to_i == 0)
               import_data(inserts)
               inserts.clear
@@ -44,7 +44,7 @@ module ChinaRegion
         end
 
         def self.import_data(inserts)
-          sql = "INSERT INTO #{ChinaRegion.config.table_name} (code, name) VALUES #{inserts.join(",")}"
+          sql = "INSERT INTO #{ChinaRegion.config.table_name} (code, name, pinyin_cap , pinyin_abbr) VALUES #{inserts.join(",")}"
           connection.execute sql
         end
 

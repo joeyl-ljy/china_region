@@ -34,6 +34,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activerecord', '>= 4.0'
   spec.add_dependency 'railties', '>= 4.0.0'
   spec.add_dependency "rake", ">= 10.0.0"
+  # 拼音转换
+  spec.add_dependency "ruby-pinyin"
   spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
